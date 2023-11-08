@@ -1,0 +1,110 @@
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-right: 110px;
+  width: fit-content;
+}
+
+:root {
+  --omrs-color-ink-lowest-contrast: rgba(47, 60, 85, 0.18);
+  --omrs-color-ink-low-contrast: rgba(60, 60, 67, 0.3);
+  --omrs-color-ink-medium-contrast: rgba(19, 19, 21, 0.6);
+  --omrs-color-interaction: #1e4bd1;
+  --omrs-color-interaction-minus-two: rgba(73, 133, 224, 0.3);
+  /* --omrs-color-interaction-minus-two: rgba(17, 51, 101, 0.425); */
+  --omrs-color-bg-low-contrast: #eff1f2;
+  --omrs-color-ink-high-contrast: #121212;
+  --omrs-color-bg-high-contrast: #ffffff;
+}
+/** END: Non Openmrs CSS **/
+div.omrs-input-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+  width: 20.4375rem;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+input:autofill {
+  background: var(--omrs-color-interaction-minus-two) !important;
+}
+
+/* Input*/
+.omrs-input-underlined > input,
+.omrs-input-filled > input {
+  background: var(--omrs-color-interaction-minus-two);
+  border: none;
+  border-bottom: 0.125rem solid rgba(215, 215, 239, 0.4);
+  width: 100%;
+  font-size: 1.1625rem;
+  font-weight: 500;
+  padding-left: 0.875rem;
+  line-height: 147.6%;
+  padding-top: 0.925rem;
+  padding-bottom: 0.2rem;
+  color: #fff;
+}
+
+.omrs-input-underlined > input:focus,
+.omrs-input-filled > input:focus {
+  outline: none;
+}
+
+.omrs-input-underlined > .omrs-input-label,
+.omrs-input-filled > .omrs-input-label {
+  position: absolute;
+  top: 0.9375rem;
+  left: 0.875rem;
+  line-height: 147.6%;
+  color: rgba(215, 215, 239, 0.8);
+  transition: top 0.2s;
+}
+
+.omrs-input-underlined > svg,
+.omrs-input-filled > svg {
+  position: absolute;
+  top: 0.9375rem;
+  right: 0.875rem;
+  fill: rgba(215, 215, 239, 0.8);
+}
+
+.omrs-input-underlined > input:hover,
+.omrs-input-filled > input:hover {
+  background: var(--omrs-color-interaction-minus-two);
+  border-color: rgba(215, 215, 239, 0.8);
+}
+
+.omrs-input-underlined > input:focus + .omrs-input-label,
+.omrs-input-underlined > input:valid + .omrs-input-label,
+.omrs-input-filled > input:focus + .omrs-input-label,
+.omrs-input-filled > input:valid + .omrs-input-label {
+  top: 0;
+  font-size: 0.9375rem;
+  margin-bottom: 35px;
+}
+
+@media only screen and (max-width: 1460px) {
+  .search-bar {
+    margin-right: 55px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .search-bar {
+    margin-right: 11px;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  div.omrs-input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 12.4375rem;
+    margin-left: 12px;
+  }
+}
