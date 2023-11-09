@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { CurrentWeather, findIcon } from "./Components/WeatherAPI/CurrentWeather";
-import TempChart from "./Components/WeatherAPI/TempChart";
-import ExtraData from "./Components/WeatherAPI/ExtraData";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import cloudImg from "./assets/cloud.jpg";
-import nightImg from "./assets/night.jpg";
-import DadosArduino from "./Components/OficinasAPI/DadosArduino";
-import { ClimaAtual } from "./Components/OficinasAPI/ClimaAtual";
-import Grafico from "./Components/OficinasAPI/Grafico";
+import cloudImg            from "./assets/cloud.jpg";
+import nightImg            from "./assets/night.jpg";
+
+import { CurrentWeather }  from "./Components/WeatherAPI/CurrentWeather";
+import ExtraData           from "./Components/WeatherAPI/ExtraData";
+import TempChart           from "./Components/WeatherAPI/TempChart";
+
+import { ClimaAtual }      from "./Components/OficinasAPI/ClimaAtual";
+import DadosArduino        from "./Components/OficinasAPI/DadosAtuais";
+import Grafico             from "./Components/OficinasAPI/Grafico";
 
 function App() {
   const [weather, setWeather] = useState({});
   const [clima, setClima] = useState({});
-  const [temperaturas, settemperaturas] = useState({});
   const [toggle, setToggle] = useState(true);
 
   // Change the background image when the toggle state changes
@@ -62,40 +64,41 @@ function App() {
 
   // Store the data in an object
   const dadosAtuais = {
-    latitude: clima[0]?.latitude,
-    altitude: clima[0]?.altitude, 
-    temperatura: clima[0]?.temperatura, 
-    pressao: clima[0]?.pressao, 
-    umidade: clima[0]?.umidade, 
-    velocidadeVento: clima[0]?.velocidadeVento, 
-    direcaoVento: clima[0]?.direcaoVento, 
-    indiceUV: clima[0]?.indiceUV,
-    intensidadeLuminosa: clima[0]?.intensidadeLuminosa,
-    chuva: clima[0]?.chuva,
-    volumeChuva: clima[0]?.volumeChuva,
-    porcentagemBaterias: clima[0]?.porcentagemBaterias,
+    altitude:                 clima[0]?.altitude, 
+    latitude:                 clima[0]?.latitude,
+    longitude:                 clima[0]?.longitude, 
+    temperatura:              clima[0]?.temperatura, 
+    pressao:                  clima[0]?.pressao, 
+    umidade:                  clima[0]?.umidade, 
+    velocidadeVento:          clima[0]?.velocidadeVento, 
+    direcaoVento:             clima[0]?.direcaoVento, 
+    indiceUV:                 clima[0]?.indiceUV,
+    intensidadeLuminosa:      clima[0]?.intensidadeLuminosa,
+    chuva:                    clima[0]?.chuva,
+    volumeChuva:              clima[0]?.volumeChuva,
+    porcentagemBaterias:      clima[0]?.porcentagemBaterias,
     tensãoEletricaPlacaSolar: clima[0]?.tensãoEletricaPlacaSolar,
-    orientacaoPlacaSolar: clima[0]?.orientacaoPlacaSolar
+    orientacaoPlacaSolar:     clima[0]?.orientacaoPlacaSolar
   };
 
   // Store the current weather data in an object
   const currentData = {
-    temp: weather?.current?.temp_c,
+    temp:     weather?.current?.temp_c,
     location: weather?.location?.name,
-    date: weather?.location?.localtime,
-    icon: weather?.current?.condition?.icon,
-    text: weather?.current?.condition?.text,
+    date:     weather?.location?.localtime,
+    icon:     weather?.current?.condition?.icon,
+    text:     weather?.current?.condition?.text,
   };
 
   // Store the extra weather data in an object
   const extraData = {
-    lat: weather?.location?.lat,
-    lon: weather?.location?.lon,
-    pressure: weather?.current?.pressure_mb,
-    wind: weather?.current?.wind_kph,
-    wind_dir: weather?.current?.wind_dir,
-    humidity: weather?.current?.humidity,
-    uv: weather?.current?.uv,
+    lat:       weather?.location?.lat,
+    lon:       weather?.location?.lon,
+    pressure:  weather?.current?.pressure_mb,
+    wind:      weather?.current?.wind_kph,
+    wind_dir:  weather?.current?.wind_dir,
+    humidity:  weather?.current?.humidity,
+    uv:        weather?.current?.uv,
     precip_mm: weather?.current?.precip_mm,
   };
 

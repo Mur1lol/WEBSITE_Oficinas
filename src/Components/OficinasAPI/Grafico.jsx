@@ -115,7 +115,7 @@ const Grafico = (data) => {
 
   data = data.data;
 
-  for(let i=0; i<data.length; i++) {
+  for(let i=data.length-1; i>=0; i--) {
     temperatura.push(data[i]?.temperatura);
     labels.push(data[i]?.hora);
   }
@@ -128,7 +128,7 @@ const Grafico = (data) => {
       {
         fill: true,
         tension: 0.35,
-        label: "Temperature (°C) ",
+        label: "Temperatura (°C) ",
         data: temperatura,
         borderColor: "rgba(73, 133, 224, 1)",
         backgroundColor: "rgba(73, 133, 224, 0.5)",

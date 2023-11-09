@@ -1,6 +1,5 @@
 import "./CurrentWeather.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import conditonsData from "../../conditionsData";
 
 // Function to find the correct icon for the current weather condition
 const findIcon = (condition) => {
@@ -100,4 +99,4 @@ const CurrentWeather = ({ weatherData }) => {
   );
 };
 
-export { CurrentWeather, findIcon };
+export { CurrentWeather};

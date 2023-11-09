@@ -7,6 +7,25 @@ const ExtraData = ({ extraData }) => {
       <div className="grid-two">
         <div className="extra-data">
           <FontAwesomeIcon
+            icon={`fa-solid fa-location-crosshairs`}
+            className="extra-data__icon"
+          />
+          <h3 className="data-type">Latitude</h3>
+          <h2 className="pressure-data">{extraData?.lat}</h2>
+        </div>
+
+        <div className="extra-data">
+          <FontAwesomeIcon
+            icon={`fa-solid fa-location-crosshairs`}
+            className="extra-data__icon"
+          />
+          <h3 className="data-type">Longitude</h3>
+          <h2 className="wind-data">{extraData?.lon}</h2>
+        </div>
+      </div>
+      <div className="grid-two">
+        <div className="extra-data">
+          <FontAwesomeIcon
             icon={`fa-solid fa-weight-scale`}
             className="extra-data__icon"
           />
@@ -26,7 +45,7 @@ const ExtraData = ({ extraData }) => {
       <div className="grid-two">
         <div className="extra-data">
           <FontAwesomeIcon
-            icon={`fa-solid fa-wind`}
+            icon={`fa-solid fa-droplet`}
             className="extra-data__icon"
           />
           <h3 className="data-type">Humidity</h3>
@@ -35,7 +54,7 @@ const ExtraData = ({ extraData }) => {
 
         <div className="extra-data">
           <FontAwesomeIcon
-            icon={`fa-solid fa-wind`}
+            icon={`fa-solid fa-compass`}
             className="extra-data__icon"
           />
           <h3 className="data-type">Wind Direction</h3>
@@ -58,7 +77,7 @@ const ExtraData = ({ extraData }) => {
       <div className="grid-two">
         <div className="extra-data">
           <FontAwesomeIcon
-            icon={`fa-solid fa-wind`}
+            icon={`fa-solid fa-sun`}
             className="extra-data__icon"
           />
           <h3 className="data-type">Ultra Violeta</h3>
@@ -67,7 +86,7 @@ const ExtraData = ({ extraData }) => {
 
         <div className="extra-data">
           <FontAwesomeIcon
-            icon={`fa-solid fa-wind`}
+            icon={`fa-solid fa-cloud-showers-heavy`}
             className="extra-data__icon"
           />
           <h3 className="data-type">Precip</h3>
