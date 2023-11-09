@@ -1,6 +1,6 @@
-import "./CurrentWeather.css";
+import "./ClimaAtual.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import conditonsData from "../conditionsData";
+import conditonsData from "../../conditionsData";
 
 // Function to find the correct icon for the current weather condition
 const findIcon = (condition) => {
@@ -60,8 +60,8 @@ const findIcon = (condition) => {
 //   return conditonsData[index].icon;
 // };
 
-const CurrentWeather = ({ weatherData }) => {
-  const condition = weatherData?.text;
+const ClimaAtual = ({ data }) => {
+  const condition = data?.text;
 
   // Format the time and date
   const time = new Date().toLocaleTimeString("pt-br", {
@@ -70,7 +70,7 @@ const CurrentWeather = ({ weatherData }) => {
     hour12: false,
   });
 
-  const date = new Date().toLocaleDateString("en-us", {
+  const date = new Date().toLocaleDateString("pt-br", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -80,11 +80,11 @@ const CurrentWeather = ({ weatherData }) => {
   return (
     <div className="current">
       <h1 className="current-temp">
-        {weatherData?.temp}
+        {parseInt(data?.temperatura)}
         <sup>°C</sup>
       </h1>
       <div className="location-date">
-        <h2 className="location">{weatherData?.location}</h2>
+        <h2 className="location">Curitiba</h2>
         <h3 className="current-date">
           {time} - {date}
         </h3>
@@ -94,10 +94,10 @@ const CurrentWeather = ({ weatherData }) => {
           icon={`fa-solid ${findIcon(condition)}`}
           className="current-weather__icon"
         />
-        <h3 className="current-weather__text">{weatherData?.text}</h3>
+        <h3 className="current-weather__text">{data?.text}</h3>
       </div>
     </div>
   );
 };
 
-export { CurrentWeather, findIcon };
+export { ClimaAtual, findIcon };

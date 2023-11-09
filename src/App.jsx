@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import SearchBar from "./Components/SearchBar";
-import { CurrentWeather, findIcon } from "./Components/CurrentWeather";
-import TempChart from "./Components/TempChart";
-import Forecast from "./Components/Forecast";
-import Footer from "./Components/Footer";
-import ExtraData from "./Components/ExtraData";
+import { CurrentWeather, findIcon } from "./Components/WeatherAPI/CurrentWeather";
+import TempChart from "./Components/WeatherAPI/TempChart";
+import ExtraData from "./Components/WeatherAPI/ExtraData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cloudImg from "./assets/cloud.jpg";
 import nightImg from "./assets/night.jpg";
-import DadosArduino from "./Components/DadosArduino";
+import DadosArduino from "./Components/OficinasAPI/DadosArduino";
+import { ClimaAtual } from "./Components/OficinasAPI/ClimaAtual";
+import Grafico from "./Components/OficinasAPI/Grafico";
 
 function App() {
   const [weather, setWeather] = useState({});
   const [clima, setClima] = useState({});
-  const [location, setLocation] = useState("");
-  const [lat, setLat] = useState("");
-  const [lon, setLon] = useState("");
+  const [temperaturas, settemperaturas] = useState({});
   const [toggle, setToggle] = useState(true);
 
   // Change the background image when the toggle state changes
@@ -33,34 +30,6 @@ function App() {
 
   // import the API key from .env file
   const apiKey = import.meta.env.VITE_API_KEY;
-  //const apiKey = 'f9563fa97bd24876a08162301230411';
-
-  /*
-  // Get user's location using the Geolocation API
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLat(position.coords.latitude);
-        setLon(position.coords.longitude);
-      },
-      (err) => console.log(err)
-    );
-  }, []);
-
-  // Fetch weather data from the weather API using latitude and longitude
-  useEffect(() => {
-    fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat}, ${lon}&days=3&aqi=no&alerts=yes`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setWeather(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [lat]);
-  */
 
   // Fetch weather data from the weather API using location from the search bar
   useEffect(() => {
@@ -74,12 +43,12 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [location]);
+  }, []);
 
   // Fetch weather data from the Oficinas API
   useEffect(() => {
     fetch(
-      `http://localhost:3333/sensores`
+      `https://api-oficinas.onrender.com/sensores/10`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -89,6 +58,7 @@ function App() {
         console.log(err.message);
       });
   }, []);
+  
 
   // Store the data in an object
   const dadosAtuais = {
@@ -128,6 +98,8 @@ function App() {
     uv: weather?.current?.uv,
     precip_mm: weather?.current?.precip_mm,
   };
+
+  
 
   // Store the hourly temperature data in an array
   const temps = [];
@@ -172,9 +144,9 @@ function App() {
 
         <div className="grid-one">
           <h1>Arduino</h1>
-          <CurrentWeather weatherData={currentData} />
+          <ClimaAtual data={dadosAtuais} />
           <DadosArduino dadosAtuais={dadosAtuais} />
-          <TempChart tempsData={nineTemps} />
+          <Grafico data={clima} />
         </div>
         
       </div>

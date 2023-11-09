@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./ExtraData.css";
+import "./DadosArduino.css";
 
 const DadosArduino = ({ dadosAtuais }) => {
   return (
