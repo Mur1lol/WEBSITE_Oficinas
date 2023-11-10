@@ -120,8 +120,6 @@ const Grafico = (data) => {
     labels.push(data[i]?.hora);
   }
 
-  console.log(labels);
-
   const newData = {
     labels,
     datasets: [

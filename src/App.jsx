@@ -2,31 +2,32 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import cloudImg            from "./assets/cloud.jpg";
-import nightImg            from "./assets/night.jpg";
+import cloudImg from "./assets/cloud.jpg";
+import nightImg from "./assets/night.jpg";
 
-import { CurrentWeather }  from "./Components/WeatherAPI/CurrentWeather";
-import ExtraData           from "./Components/WeatherAPI/ExtraData";
-import TempChart           from "./Components/WeatherAPI/TempChart";
+import { CurrentWeather } from "./Components/WeatherAPI/CurrentWeather";
+import ExtraData from "./Components/WeatherAPI/ExtraData";
+import TempChart from "./Components/WeatherAPI/TempChart";
 
-import { ClimaAtual }      from "./Components/OficinasAPI/ClimaAtual";
-import DadosArduino        from "./Components/OficinasAPI/DadosAtuais";
-import Grafico             from "./Components/OficinasAPI/Grafico";
+import { ClimaAtual } from "./Components/OficinasAPI/ClimaAtual";
+import DadosArduino from "./Components/OficinasAPI/DadosAtuais";
+import Grafico from "./Components/OficinasAPI/Grafico";
 
 function App() {
   const [weather, setWeather] = useState({});
   const [clima, setClima] = useState({});
   const [toggle, setToggle] = useState(true);
+  const [count, setCount] = useState(0);
 
   // Change the background image when the toggle state changes
   useEffect(() => {
-   document.body.style = `background-image:  linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${toggle ? cloudImg : nightImg});`
+    document.body.style = `background-image:  linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${toggle ? cloudImg : nightImg});`
   }, [toggle]);
 
   // Check if time is day or night
   useEffect(() => {
     const hour = new Date().getHours();
-    const isDay = hour >=6 && hour < 18; 
+    const isDay = hour >= 6 && hour < 18;
     setToggle(isDay);
   }, []);
 
@@ -59,19 +60,25 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
-  
+
+    // Adicionando intervalo de 5 minutos
+    const interval = setInterval(() => {
+      setCount(count + 1);
+    }, 300000);
+
+    return () => clearInterval(interval);
+  }, [count]);
 
   // Store the data in an object
   const dadosAtuais = {
-    altitude:                 clima[0]?.altitude, 
+    altitude:                 clima[0]?.altitude,
     latitude:                 clima[0]?.latitude,
-    longitude:                 clima[0]?.longitude, 
-    temperatura:              clima[0]?.temperatura, 
-    pressao:                  clima[0]?.pressao, 
-    umidade:                  clima[0]?.umidade, 
-    velocidadeVento:          clima[0]?.velocidadeVento, 
-    direcaoVento:             clima[0]?.direcaoVento, 
+    longitude:                clima[0]?.longitude,
+    temperatura:              clima[0]?.temperatura,
+    pressao:                  clima[0]?.pressao,
+    umidade:                  clima[0]?.umidade,
+    velocidadeVento:          clima[0]?.velocidadeVento,
+    direcaoVento:             clima[0]?.direcaoVento,
     indiceUV:                 clima[0]?.indiceUV,
     intensidadeLuminosa:      clima[0]?.intensidadeLuminosa,
     chuva:                    clima[0]?.chuva,
@@ -101,8 +108,6 @@ function App() {
     uv:        weather?.current?.uv,
     precip_mm: weather?.current?.precip_mm,
   };
-
-  
 
   // Store the hourly temperature data in an array
   const temps = [];
@@ -142,7 +147,7 @@ function App() {
           <h1>Weather API</h1>
           <CurrentWeather weatherData={currentData} />
           <ExtraData extraData={extraData} />
-          <TempChart tempsData={nineTemps} />   
+          <TempChart tempsData={nineTemps} />
         </div>
 
         <div className="grid-one">
@@ -151,12 +156,10 @@ function App() {
           <DadosArduino dadosAtuais={dadosAtuais} />
           <Grafico data={clima} />
         </div>
-        
+
       </div>
-      
-      {/* <pre>{JSON.stringify(weather, null, 2)}</pre> */}
     </div>
-    
+
   );
 }
 
