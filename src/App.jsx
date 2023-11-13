@@ -2,22 +2,22 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import cloudImg from "./assets/cloud.jpg";
-import nightImg from "./assets/night.jpg";
+import cloudImg            from "./assets/cloud.jpg";
+import nightImg            from "./assets/night.jpg";
 
-import { CurrentWeather } from "./Components/WeatherAPI/CurrentWeather";
-import ExtraData from "./Components/WeatherAPI/ExtraData";
-import TempChart from "./Components/WeatherAPI/TempChart";
+import CurrentWeather      from "./Components/WeatherAPI/CurrentWeather";
+import ExtraData           from "./Components/WeatherAPI/ExtraData";
+import TempChart           from "./Components/WeatherAPI/TempChart";
 
-import { ClimaAtual } from "./Components/OficinasAPI/ClimaAtual";
-import DadosArduino from "./Components/OficinasAPI/DadosAtuais";
-import Grafico from "./Components/OficinasAPI/Grafico";
+import ClimaAtual          from "./Components/OficinasAPI/ClimaAtual";
+import DadosArduino        from "./Components/OficinasAPI/DadosAtuais";
+import Grafico             from "./Components/OficinasAPI/Grafico";
 
 function App() {
   const [weather, setWeather] = useState({});
-  const [clima, setClima] = useState({});
-  const [toggle, setToggle] = useState(true);
-  const [count, setCount] = useState(0);
+  const [clima, setClima]     = useState({});
+  const [toggle, setToggle]   = useState(true);
+  const [count, setCount]     = useState(0);
 
   // Change the background image when the toggle state changes
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
   // Check if time is day or night
   useEffect(() => {
     const hour = new Date().getHours();
-    const isDay = hour >= 6 && hour < 18;
+    const isDay = (hour >= 6 && hour < 18);
     setToggle(isDay);
   }, []);
 
@@ -37,7 +37,7 @@ function App() {
   // Fetch weather data from the weather API using location from the search bar
   useEffect(() => {
     fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Curitiba&days=3&aqi=no&alerts=yes`
+      `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=Curitiba`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -61,13 +61,21 @@ function App() {
         console.log(err.message);
       });
 
-    // Adicionando intervalo de 5 minutos
+    // Adicionando intervalo de 5 minutos (1000 = 1 segundo)
     const interval = setInterval(() => {
       setCount(count + 1);
     }, 300000);
 
     return () => clearInterval(interval);
   }, [count]);
+
+  var texto;
+  if(clima[0]?.chuva)                           { texto = "Chovendo"; }
+  else {
+    if(clima[0]?.intensidadeLuminosa > 60)      { texto = "Ensolarado"; }
+    else if(clima[0]?.intensidadeLuminosa > 30) { texto = "Entre Nuvens";  }
+    else                                        { texto = "Nublado"; }
+  }
 
   // Store the data in an object
   const dadosAtuais = {
@@ -84,8 +92,9 @@ function App() {
     chuva:                    clima[0]?.chuva,
     volumeChuva:              clima[0]?.volumeChuva,
     porcentagemBaterias:      clima[0]?.porcentagemBaterias,
-    tensãoEletricaPlacaSolar: clima[0]?.tensãoEletricaPlacaSolar,
-    orientacaoPlacaSolar:     clima[0]?.orientacaoPlacaSolar
+    tensaoEletricaPlacaSolar: clima[0]?.tensaoEletricaPlacaSolar,
+    orientacaoPlacaSolar:     clima[0]?.orientacaoPlacaSolar,
+    text: texto
   };
 
   // Store the current weather data in an object

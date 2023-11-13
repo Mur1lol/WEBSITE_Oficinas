@@ -1,64 +1,27 @@
 import "./ClimaAtual.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import conditonsData from "../../conditionsData";
 
 // Function to find the correct icon for the current weather condition
 const findIcon = (condition) => {
   let icon;
   switch (condition) {
-    case "Clear":
+    case "Nublado":
       icon = "fa-cloud";
       break;
-    case "Sunny":
+    case "Ensolarado":
       icon = "fa-sun";
       break;
-    case "Mist":
-      icon = "fa-cloud-meatball";
-      break;
-    case "Cloudy":
-      icon = "fa-cloud";
-      break;
-    case "Partly cloudy":
+    case "Entre Nuvens":
       icon = "fa-cloud-sun";
       break;
-    case "Overcast":
-      icon = "fa-smog";
-      break;
-    case "Blizzard":
-      icon = "fa-meteor";
-      break;
-    case "Fog":
-      icon = "fa-smog";
-      break;
-    case "Light rain":
-      icon = "fa-cloud-rain";
-      break;
-    case "Medium rain":
-      icon = "fa-cloud-rain";
-      break;
-    case "Heavy rain":
+    case "Chovendo":
       icon = "fa-cloud-showers-heavy";
-      break;
-    case "Light snow":
-      icon = "fa-snowflake";
-      break;
-    case "Medium snow":
-      icon = "fa-snowflake";
-      break;
-    case "Heavy snow":
-      icon = "fa-icicles";
       break;
     default:
       icon = "fa-cloud";
   }
   return icon;
 };
-
-// Function to find the correct icon for the current weather condition
-// const findIcon = (condition) => {
-//   const index = conditonsData.findIndex((item) => item.day === condition);
-//   return conditonsData[index].icon;
-// };
 
 const ClimaAtual = ({ data }) => {
   const condition = data?.text;
@@ -80,7 +43,7 @@ const ClimaAtual = ({ data }) => {
   return (
     <div className="current">
       <h1 className="current-temp">
-        {parseInt(data?.temperatura)}
+        {data?.temperatura}
         <sup>°C</sup>
       </h1>
       <div className="location-date">
@@ -94,10 +57,10 @@ const ClimaAtual = ({ data }) => {
           icon={`fa-solid ${findIcon(condition)}`}
           className="current-weather__icon"
         />
-        <h3 className="current-weather__text">{data?.text}</h3>
+        <h3 className="current-weather__text">{condition}</h3>
       </div>
     </div>
   );
 };
 
-export { ClimaAtual, findIcon };
+export default ClimaAtual;

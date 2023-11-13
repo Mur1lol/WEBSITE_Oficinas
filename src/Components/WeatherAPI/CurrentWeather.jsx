@@ -99,4 +99,4 @@ const CurrentWeather = ({ weatherData }) => {
   );
 };
 
-export { CurrentWeather};
+export default CurrentWeather;
