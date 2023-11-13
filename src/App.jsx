@@ -12,6 +12,7 @@ import TempChart           from "./Components/WeatherAPI/TempChart";
 import ClimaAtual          from "./Components/OficinasAPI/ClimaAtual";
 import DadosArduino        from "./Components/OficinasAPI/DadosAtuais";
 import Grafico             from "./Components/OficinasAPI/Grafico";
+import GraficoEficiencia from "./Components/OficinasAPI/GraficoEficiencia";
 
 function App() {
   const [weather, setWeather] = useState({});
@@ -64,7 +65,7 @@ function App() {
     // Adicionando intervalo de 5 minutos (1000 = 1 segundo)
     const interval = setInterval(() => {
       setCount(count + 1);
-    }, 300000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [count]);
@@ -164,6 +165,7 @@ function App() {
           <ClimaAtual data={dadosAtuais} />
           <DadosArduino dadosAtuais={dadosAtuais} />
           <Grafico data={clima} />
+          <GraficoEficiencia data={clima} />
         </div>
 
       </div>
