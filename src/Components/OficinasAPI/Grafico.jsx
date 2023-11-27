@@ -29,8 +29,11 @@ export const options = {
   scales: {
     y: {
       // suggestedMin: 0,
-      display: false,
+      //display: false,
       // suggestedMax: 40,
+      ticks: {
+        stepSize: 2
+      },
       color: "#fff",
     },
     x: {

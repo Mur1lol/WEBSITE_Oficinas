@@ -11,7 +11,7 @@ const DadosAtuais = ({ dadosAtuais }) => {
             className="extra-data__icon"  
           />
           <h3 className="data-type">Latitude</h3>
-          <h2 className="pressure-data">{dadosAtuais?.latitude}</h2>
+          <h2 className="pressure-data">{dadosAtuais?.latitude.toFixed(2)}</h2>
         </div>
 
         <div className="extra-data">
@@ -20,7 +20,7 @@ const DadosAtuais = ({ dadosAtuais }) => {
             className="extra-data__icon"
           />
           <h3 className="data-type">Longitude</h3>
-          <h2 className="wind-data">{dadosAtuais?.longitude}</h2>
+          <h2 className="wind-data">{dadosAtuais?.longitude.toFixed(2)}</h2>
         </div>
       </div>
       <div className="grid-two">
@@ -30,7 +30,7 @@ const DadosAtuais = ({ dadosAtuais }) => {
             className="extra-data__icon"
           />
           <h3 className="data-type">Pressão</h3>
-          <h2 className="pressure-data">{dadosAtuais?.pressao} mb</h2>
+          <h2 className="pressure-data">{(dadosAtuais?.pressao/100).toFixed(2)} mb</h2>
         </div>
 
         <div className="extra-data">
@@ -81,7 +81,7 @@ const DadosAtuais = ({ dadosAtuais }) => {
             className="extra-data__icon"
           />
           <h3 className="data-type">Ultra Violeta</h3>
-          <h2 className="wind-data">{dadosAtuais?.indiceUV} %</h2>
+          <h2 className="wind-data">{dadosAtuais?.indiceUV}</h2>
         </div>
 
         <div className="extra-data">
@@ -90,7 +90,7 @@ const DadosAtuais = ({ dadosAtuais }) => {
             className="extra-data__icon"
           />
           <h3 className="data-type">Intensidade Luz</h3>
-          <h2 className="wind-data">{dadosAtuais?.intensidadeLuminosa} %</h2>
+          <h2 className="wind-data">{dadosAtuais?.intensidadeLuminosa.toFixed(2)} lux</h2>
         </div>
       </div>
     </div>

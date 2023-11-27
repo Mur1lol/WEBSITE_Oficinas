@@ -129,7 +129,7 @@ const GraficoEficiencia = (data) => {
       {
         fill: true,
         tension: 0.35,
-        label: "Eficiencia Placa Solar",
+        label: "Eficiencia Placa Solar (Tensão / Intensidade)",
         data: eficiencia,
         borderColor: "rgba(73, 133, 224, 1)",
         backgroundColor: "rgba(73, 133, 224, 0.5)",

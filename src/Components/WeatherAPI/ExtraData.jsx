@@ -81,7 +81,7 @@ const ExtraData = ({ extraData }) => {
             className="extra-data__icon"
           />
           <h3 className="data-type">Ultra Violeta</h3>
-          <h2 className="wind-data">{extraData?.uv} %</h2>
+          <h2 className="wind-data">{extraData?.uv}</h2>
         </div>
 
         <div className="extra-data">

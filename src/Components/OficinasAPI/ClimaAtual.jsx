@@ -5,17 +5,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const findIcon = (condition) => {
   let icon;
   switch (condition) {
-    case "Nublado":
+    case "Clear":
       icon = "fa-cloud";
       break;
-    case "Ensolarado":
+    case "Sunny":
       icon = "fa-sun";
       break;
-    case "Entre Nuvens":
+    case "Mist":
+      icon = "fa-cloud-meatball";
+      break;
+    case "Cloudy":
+      icon = "fa-cloud";
+      break;
+    case "Partly cloudy":
       icon = "fa-cloud-sun";
       break;
-    case "Chovendo":
+    case "Overcast":
+      icon = "fa-smog";
+      break;
+    case "Blizzard":
+      icon = "fa-meteor";
+      break;
+    case "Fog":
+      icon = "fa-smog";
+      break;
+    case "Light rain":
+      icon = "fa-cloud-rain";
+      break;
+    case "Medium rain":
+      icon = "fa-cloud-rain";
+      break;
+    case "Heavy rain":
       icon = "fa-cloud-showers-heavy";
+      break;
+    case "Light snow":
+      icon = "fa-snowflake";
+      break;
+    case "Medium snow":
+      icon = "fa-snowflake";
+      break;
+    case "Heavy snow":
+      icon = "fa-icicles";
       break;
     default:
       icon = "fa-cloud";
@@ -51,13 +81,6 @@ const ClimaAtual = ({ data }) => {
         <h3 className="current-date">
           {time} - {date}
         </h3>
-      </div>
-      <div className="current-weather">
-        <FontAwesomeIcon
-          icon={`fa-solid ${findIcon(condition)}`}
-          className="current-weather__icon"
-        />
-        <h3 className="current-weather__text">{condition}</h3>
       </div>
     </div>
   );

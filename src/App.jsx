@@ -70,14 +70,6 @@ function App() {
     return () => clearInterval(interval);
   }, [count]);
 
-  var texto;
-  if(clima[0]?.chuva)                           { texto = "Chovendo"; }
-  else {
-    if(clima[0]?.intensidadeLuminosa > 60)      { texto = "Ensolarado"; }
-    else if(clima[0]?.intensidadeLuminosa > 30) { texto = "Entre Nuvens";  }
-    else                                        { texto = "Nublado"; }
-  }
-
   // Store the data in an object
   const dadosAtuais = {
     altitude:                 clima[0]?.altitude,
@@ -95,7 +87,7 @@ function App() {
     porcentagemBaterias:      clima[0]?.porcentagemBaterias,
     tensaoEletricaPlacaSolar: clima[0]?.tensaoEletricaPlacaSolar,
     orientacaoPlacaSolar:     clima[0]?.orientacaoPlacaSolar,
-    text: texto
+    text:                      weather?.current?.condition?.text,
   };
 
   // Store the current weather data in an object
